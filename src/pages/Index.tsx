@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from "sonner";
 import WebsiteCard from '@/components/WebsiteCard';
 
@@ -8,13 +8,27 @@ const Index = () => {
   // This function can be called programmatically to add new URLs
   const addUrl = (newUrl: string) => {
     try {
-      new URL(newUrl);
-      setUrls(prev => [...prev, newUrl]);
+      // Add https:// if not present
+      const urlToAdd = newUrl.startsWith('http') ? newUrl : `https://${newUrl}`;
+      new URL(urlToAdd);
+      setUrls(prev => [...prev, urlToAdd]);
       toast.success('Website added successfully');
     } catch {
       toast.error('Please enter a valid URL');
     }
   };
+
+  // Add initial URLs when the component mounts
+  useEffect(() => {
+    const initialUrls = [
+      'github.com',
+      'google.com',
+      'twitter.com'
+    ];
+
+    // Add each URL
+    initialUrls.forEach(url => addUrl(url));
+  }, []); // Empty dependency array means this runs once on mount
 
   const handleRemoveUrl = (index: number) => {
     setUrls(prev => prev.filter((_, i) => i !== index));
