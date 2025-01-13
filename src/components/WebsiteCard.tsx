@@ -12,9 +12,8 @@ const WebsiteCard = ({ url, onRemove }: WebsiteCardProps) => {
 
   // Function to get a preview image based on the URL
   const getPreviewImage = () => {
-    // For now, using a placeholder image. In a real app, you'd want to generate 
-    // previews based on the actual website or use an API
-    return 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d';
+    // Using a screenshot service to get real website previews
+    return `https://api.screenshotmachine.com?key=YOUR_API_KEY&url=${encodeURIComponent(url)}&dimension=1024x768&delay=2000`;
   };
 
   return (
