@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: iframe-squares-gateway
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: NODE_VERSION
+        value: 18.17.0
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
