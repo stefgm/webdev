@@ -79,7 +79,7 @@ const Index = () => {
             <WebsiteCard
               key={index}
               url={url}
-              onRemove={() => handleRemoveUrl(index)}
+              onRemove={() => {}}
             />
           ))}
         </div>
