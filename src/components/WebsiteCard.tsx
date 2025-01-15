@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -9,11 +9,24 @@ interface WebsiteCardProps {
 
 const WebsiteCard = ({ url, onRemove }: WebsiteCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // Function to get a preview image based on the URL
+  const removeUnwantedDiv = () => {
+    try {
+      const iframe = iframeRef.current;
+      if (iframe && iframe.contentDocument) {
+        const unwantedDiv = iframe.contentDocument.querySelector('.row.pt-5');
+        if (unwantedDiv) {
+          unwantedDiv.remove();
+        }
+      }
+    } catch (error) {
+      console.error('Unable to remove div from iframe content:', error);
+    }
+  };
+
   const getPreviewImage = () => {
-    // Using a screenshot service to get real website previews
-    return `https://api.screenshotmachine.com?key=YOUR_API_KEY&url=${encodeURIComponent(url)}&dimension=1024x768&delay=2000`;
+    return `https://api.screenshotmachine.com?key=150102&url=${encodeURIComponent(url)}&dimension=1024x768&delay=2000`;
   };
 
   return (
@@ -42,10 +55,12 @@ const WebsiteCard = ({ url, onRemove }: WebsiteCardProps) => {
             </div>
             <div className="flex-1 w-full h-full">
               <iframe 
+                ref={iframeRef} 
                 src={url} 
                 className="w-full h-full border-0"
                 title="Embedded website"
                 sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                onLoad={removeUnwantedDiv}
               />
             </div>
           </div>

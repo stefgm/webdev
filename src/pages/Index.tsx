@@ -21,9 +21,13 @@ const Index = () => {
   // Add initial URLs when the component mounts
   useEffect(() => {
     const initialUrls = [
-      'github.com',
-      'google.com',
-      'twitter.com'
+      'https://cozystay.loftocean.com/mountain-chalet/',
+      'https://websitedemos.net/home-stay-04/?customize=template',
+      'https://themewant.com/products/wordpress/almaris/beach-resort/',
+      'https://cozystay.loftocean.com/island-resort/'
+
+
+      
     ];
 
     // Add each URL
