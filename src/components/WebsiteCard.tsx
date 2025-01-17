@@ -125,9 +125,9 @@ const WebsiteCard = ({ url, onRemove }: WebsiteCardProps) => {
               className="w-full h-full"
               onLoad={handleIframeLoad}
               onError={handleIframeError}
+              sandbox="allow-same-origin allow-scripts" // Updated sandbox attributes
               loading="lazy"
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-presentation"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              referrerPolicy="no-referrer"
               title="Website preview"
             />
           )}
