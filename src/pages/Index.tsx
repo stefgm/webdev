@@ -42,6 +42,7 @@ const Index = () => {
 
   useEffect(() => {
     const initialUrls = [
+      'https://demo.yootheme.com/wordpress/themes/dennis-miller/',
       'https://cozystay.loftocean.com/mountain-chalet/',
       'https://websitedemos.net/home-stay-04/?customize=template',
       'https://gofo.peerduck.com/home-golf-club/',
